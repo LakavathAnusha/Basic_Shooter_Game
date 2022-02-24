@@ -19,7 +19,9 @@ public class BulletLaunch : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             GameObject tempBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            tempBullet.GetComponent<Rigidbody>().velocity = Vector3.forward*speed;
+            tempBullet.transform.position = transform.position;
+            //Camera camera = GetComponentInChildren<Camera>();
+            tempBullet.GetComponent<Rigidbody>().velocity = Camera.main.transform.rotation*Vector3.forward*speed;
            
         }
     }
