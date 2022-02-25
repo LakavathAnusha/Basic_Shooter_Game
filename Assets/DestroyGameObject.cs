@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DestroyGameObject : MonoBehaviour
 {
-    public static int score = 0;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,18 +21,14 @@ public class DestroyGameObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        ScoreManager score;
         if (other.CompareTag("Enemy"))
         {
             Destroy(other.gameObject);
-            score = score + 1;
-            Debug.Log("score" + score);
+            score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+            score.ScoreCalculator(10);
         }
-        if(score==5)
-        {
-            Debug.Log("you won the Game");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            score = 0;
-        }
+    
 
     }
 }
