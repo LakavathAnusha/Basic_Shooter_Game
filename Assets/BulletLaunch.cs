@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BulletLaunch : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public float speed;
+    public GameObject enemyPrefab;
+    public Vector3 offset;
+    public float time;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,5 +28,17 @@ public class BulletLaunch : MonoBehaviour
             tempBullet.GetComponent<Rigidbody>().velocity = Camera.main.transform.rotation*Vector3.forward*speed;
            
         }
-    }
+        time = time + Time.deltaTime;
+        if(time>=3.0f)
+        {
+            float x = Random.Range(-10f, 10f);
+            float y = Random.Range(1f, 3f);
+            float z = Random.Range(-10f, 10f);
+            Instantiate(enemyPrefab, new Vector3(x, y, z), Quaternion.identity);
+            time = 0.0f;
+
+        }
+}
+
+    
 }
