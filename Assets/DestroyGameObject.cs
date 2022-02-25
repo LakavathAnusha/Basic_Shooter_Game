@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DestroyGameObject : MonoBehaviour
 {
@@ -26,5 +27,12 @@ public class DestroyGameObject : MonoBehaviour
             score = score + 1;
             Debug.Log("score" + score);
         }
+        if(score==5)
+        {
+            Debug.Log("you won the Game");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            score = 0;
+        }
+
     }
 }
